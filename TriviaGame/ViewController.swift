@@ -28,10 +28,13 @@ class QuizViewController: UIViewController {
     }
     
     func showGameOverAlert() {
-        let gameOverAlert = UIAlertController(title: "Trivia Results", message: "Game Over! you scored: \(score) out of a possible \(questions.count)", preferredStyle: .actionSheet)
-        let okayAction = UIAlertAction(title: "about that time to reset huh?", style: UIAlertAction.Style.default) { UIAlertAction in
+        let gameOverAlert = UIAlertController(title: "Trivia Results", message: "Game Over! you scored: \(score) out of a possible \(questionsPlaceholder.count) questions", preferredStyle: UIAlertController.Style.alert)
+        let resetAction = UIAlertAction(title: "about that time to reset huh? *Tap Here*", style: UIAlertAction.Style.default) { UIAlertAction in
             self.resetGame()
         }
+        
+        gameOverAlert.addAction(resetAction)
+        self.present(gameOverAlert, animated: true, completion: nil)
     }
     
     
@@ -93,7 +96,13 @@ class QuizViewController: UIViewController {
         let question2 = TriviaQuestion(triviaQuestion: "How many languages is C-3PO fluent in?", answers: ["2", "450", "1,000,000", "6,000,000"], correctAnswerIndex: 3)
         let question3 = TriviaQuestion(triviaQuestion: "What is the name of the Wookiee's home world?", answers: ["Dathomir", "Kashyyyk", "Tatooine", "Jedha"], correctAnswerIndex: 1)
         let question4 = TriviaQuestion(triviaQuestion: "Which species stole the plans to the Death Star?", answers: ["Bothans", "Yarkora", "Quarren", "Gran"], correctAnswerIndex: 0)
-        questions = [question1, question2, question3, question4]
+        let question5 = TriviaQuestion(triviaQuestion: "What odds does C-3PO give Han for successfully navigating the asteroid field?", answers: ["4567 to 1", "3720 to 1", "5789 to 1", "2345 to 1"], correctAnswerIndex: 1)
+        let question6 = TriviaQuestion(triviaQuestion: "Who is Lando Calrissian's co-pilot in Episode VI: Return of the Jedi?", answers: ["Ben Kenobi", "Nien Nunb", "Han Solo", "Bossk"], correctAnswerIndex: 1)
+        let question7 = TriviaQuestion(triviaQuestion: "What does AT-AT stand for?", answers: ["All Terrain Armored Transport", "All Terrain Assault Transport", "All Terrain Attack Transport", "All Terrain Amazing Train"], correctAnswerIndex: 0)
+        let question8 = TriviaQuestion(triviaQuestion: "What is the name of Boba Fett's ship?", answers: ["The Devestator", "The Executor", "Slave I", "Star Forge"] , correctAnswerIndex: 2)
+        let question9 = TriviaQuestion(triviaQuestion: "Who was the original commander of the first Death Star?", answers: ["Wullf Yuarlen", "Grand Moff Tarkin", "Director Krennic", "Admiral Versio"], correctAnswerIndex: 1)
+        let question10 = TriviaQuestion(triviaQuestion: "Where was Luke Skywalker originally headed to pick up power converters", answers: ["Death Star II", "Mos Eisley", "Tosche Station", "Kessell"], correctAnswerIndex: 2)
+        questions = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10]
     }
     
     
@@ -112,7 +121,6 @@ class QuizViewController: UIViewController {
         questions = questionsPlaceholder
         questionsPlaceholder.removeAll()
         getNewQuestion()
-        
     }
     
     
